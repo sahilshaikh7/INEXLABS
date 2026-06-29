@@ -1,0 +1,59 @@
+<section id="faq" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <div appReveal class="text-center">
+      <p class="text-sm font-medium uppercase tracking-widest text-primary">
+        FAQ
+      </p>
+      <h2
+        class="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl"
+      >
+        Frequently asked questions
+      </h2>
+    </div>
+
+    <div class="mt-12 space-y-3">
+      @for (f of faqs; track f.q; let i = $index) {
+        @let isOpen = open() === i;
+        <div
+          [appReveal]="i * 60"
+          class="overflow-hidden rounded-2xl glass border border-border transition-colors data-[open=true]:border-primary/40"
+        >
+          <div [attr.data-open]="isOpen">
+            <button
+              (click)="toggle(i)"
+              class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              [attr.aria-expanded]="isOpen"
+            >
+              <span class="text-base font-medium">{{ f.q }}</span>
+              <svg
+                lucidePlus
+                [class]="
+                  cn(
+                    'h-5 w-5 shrink-0 text-primary transition-transform duration-300',
+                    isOpen && 'rotate-45'
+                  )
+                "
+              ></svg>
+            </button>
+            <div
+              [class]="
+                cn(
+                  'grid transition-all duration-300 ease-out',
+                  isOpen
+                    ? 'grid-rows-[1fr] opacity-100'
+                    : 'grid-rows-[0fr] opacity-0'
+                )
+              "
+            >
+              <div class="overflow-hidden">
+                <p class="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">
+                  {{ f.a }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

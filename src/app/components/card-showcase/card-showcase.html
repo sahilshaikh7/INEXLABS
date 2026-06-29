@@ -1,0 +1,67 @@
+<section #section id="showcase" class="relative">
+  <div
+    #pin
+    class="relative flex min-h-screen items-center overflow-hidden py-20"
+  >
+    <div
+      class="pointer-events-none absolute inset-0 bg-grid-fine opacity-40"
+    ></div>
+    <div
+      class="pointer-events-none absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--cyber-blue)]/15 blur-[130px]"
+    ></div>
+
+    <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div class="mb-10 max-w-xl">
+        <p
+          class="font-mono text-sm font-medium uppercase tracking-widest text-[var(--cyber-blue-bright)]"
+        >
+          // Securing the transaction layer
+        </p>
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Every payment, hardened against attack.
+        </h2>
+      </div>
+
+      <div class="relative grid items-center gap-8 lg:grid-cols-2">
+        <!-- 3D card stage -->
+        <div
+          class="relative flex h-[22rem] items-center justify-center sm:h-[26rem]"
+          style="perspective: 1400px"
+        >
+          <div
+            #card
+            class="relative w-full max-w-md will-change-transform"
+            style="transform-style: preserve-3d"
+          >
+            <div
+              class="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-[var(--cyber-blue)]/30 blur-3xl"
+            ></div>
+            <img
+              src="/assets/credit-card.png"
+              alt="Futuristic secured payment card with glowing circuit lines"
+              class="h-auto w-full drop-shadow-2xl"
+              draggable="false"
+            />
+          </div>
+        </div>
+
+        <!-- Text revealed behind the card -->
+        <div class="relative space-y-6">
+          @for (f of features; track f.title) {
+            <div
+              data-card-reveal
+              class="rounded-2xl glass border border-border p-6 shadow-glow-sm"
+            >
+              <h3 class="text-lg font-semibold text-foreground">
+                {{ f.title }}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {{ f.desc }}
+              </p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

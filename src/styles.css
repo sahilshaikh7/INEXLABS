@@ -1,0 +1,440 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+app-home,
+app-navbar,
+app-hero,
+app-trusted-clients,
+app-about,
+app-services,
+app-why-choose-us,
+app-card-showcase,
+app-roi,
+app-testimonials,
+app-faq,
+app-contact,
+app-footer,
+app-cursor {
+  display: block;
+}
+
+@theme inline {
+  --font-heading: var(--font-geist-sans), 'Geist Fallback';
+  --font-sans: var(--font-geist-sans), 'Geist Fallback';
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-glow: var(--glow);
+
+  /* Brand neon palette (from INEXLABS logo + reference assets) */
+  --color-cyber-blue: var(--cyber-blue);
+  --color-cyber-blue-bright: var(--cyber-blue-bright);
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-purple: var(--neon-purple);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+  --animate-spin-slow: spin 24s linear infinite;
+  --animate-grid: grid-move 20s linear infinite;
+  --animate-border-glow: border-glow 4s linear infinite;
+  --animate-scan: scan 6s linear infinite;
+}
+
+:root {
+  color-scheme: dark;
+  --font-geist-sans: 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  /* Pure black base for that hacker / cyber premium vibe */
+  --background: #050505;
+  --foreground: #f2f6ff;
+  --card: #0d0f14;
+  --card-foreground: #f2f6ff;
+  --popover: #0a0c10;
+  --popover-foreground: #f2f6ff;
+  --primary: #0a84ff;
+  --primary-foreground: #ffffff;
+  --secondary: #14161c;
+  --secondary-foreground: #f2f6ff;
+  --muted: #101218;
+  --muted-foreground: #8b93a7;
+  --accent: #00a3ff;
+  --accent-foreground: #050505;
+  --destructive: #ff3b5c;
+  --border: rgba(120, 160, 255, 0.14);
+  --input: rgba(120, 160, 255, 0.18);
+  --ring: #0a84ff;
+  --glow: #0a84ff;
+
+  /* Brand neon */
+  --cyber-blue: #0055ff;
+  --cyber-blue-bright: #00a3ff;
+  --neon-pink: #ff0055;
+  --neon-purple: #7b2fbe;
+
+  --radius: 0.85rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+  /* Lenis controls scrolling — disable native smooth-scroll to avoid conflicts */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: color-mix(in srgb, var(--card) 60%, transparent);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+  .glass-strong {
+    background: color-mix(in srgb, var(--card) 82%, transparent);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+  .text-glow {
+    text-shadow: 0 0 26px color-mix(in srgb, var(--glow) 60%, transparent);
+  }
+  .text-glow-pink {
+    text-shadow: 0 0 26px color-mix(in srgb, var(--neon-pink) 60%, transparent);
+  }
+  .shadow-glow {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent),
+      0 0 42px -8px color-mix(in srgb, var(--glow) 70%, transparent);
+  }
+  .shadow-glow-sm {
+    box-shadow: 0 0 26px -6px color-mix(in srgb, var(--glow) 55%, transparent);
+  }
+  .shadow-glow-pink {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon-pink) 35%, transparent),
+      0 0 42px -8px color-mix(in srgb, var(--neon-pink) 65%, transparent);
+  }
+  .gradient-text {
+    background: linear-gradient(
+      100deg,
+      var(--cyber-blue-bright),
+      #ffffff 45%,
+      var(--neon-pink)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--cyber-blue) 14%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--cyber-blue) 14%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 56px 56px;
+  }
+  .bg-grid-fine {
+    background-image: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--cyber-blue) 9%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--cyber-blue) 9%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 26px 26px;
+  }
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent);
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+  .neon-divider {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--cyber-blue-bright),
+      var(--neon-pink),
+      transparent
+    );
+    opacity: 0.6;
+  }
+}
+
+/* ---------- Custom cursor ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--cyber-blue-bright);
+  box-shadow: 0 0 12px var(--cyber-blue-bright);
+}
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid color-mix(in srgb, var(--cyber-blue-bright) 70%, transparent);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+.cursor-ring.is-hovering {
+  width: 64px;
+  height: 64px;
+  border-color: color-mix(in srgb, var(--neon-pink) 80%, transparent);
+  background: color-mix(in srgb, var(--neon-pink) 10%, transparent);
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes grid-move {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 56px 56px;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes border-glow {
+  0% {
+    filter: drop-shadow(0 0 2px var(--cyber-blue-bright))
+      drop-shadow(0 0 6px var(--cyber-blue));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px var(--cyber-blue-bright))
+      drop-shadow(0 0 16px var(--cyber-blue));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px var(--cyber-blue-bright))
+      drop-shadow(0 0 6px var(--cyber-blue));
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ---------- Glitch text (RGB shift) ---------- */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.glitch::before {
+  color: var(--cyber-blue-bright);
+  animation: glitch-x 2.6s infinite linear alternate-reverse;
+  clip-path: inset(0 0 0 0);
+}
+.glitch::after {
+  color: var(--neon-pink);
+  animation: glitch-y 3.2s infinite linear alternate-reverse;
+  clip-path: inset(0 0 0 0);
+}
+.glitch.is-glitching::before {
+  animation: glitch-anim-1 0.6s steps(2) 1;
+}
+.glitch.is-glitching::after {
+  animation: glitch-anim-2 0.6s steps(2) 1;
+}
+
+@keyframes glitch-x {
+  0%,
+  92%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  93% {
+    transform: translate(-2px, -1px);
+    opacity: 0.8;
+  }
+  97% {
+    transform: translate(2px, 1px);
+    opacity: 0.8;
+  }
+}
+@keyframes glitch-y {
+  0%,
+  90%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  94% {
+    transform: translate(2px, -1px);
+    opacity: 0.7;
+  }
+  98% {
+    transform: translate(-2px, 1px);
+    opacity: 0.7;
+  }
+}
+@keyframes glitch-anim-1 {
+  0% {
+    transform: translate(-3px, -2px);
+    clip-path: inset(10% 0 60% 0);
+  }
+  50% {
+    transform: translate(3px, 2px);
+    clip-path: inset(40% 0 20% 0);
+  }
+  100% {
+    transform: translate(0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes glitch-anim-2 {
+  0% {
+    transform: translate(3px, 2px);
+    clip-path: inset(60% 0 10% 0);
+  }
+  50% {
+    transform: translate(-3px, -2px);
+    clip-path: inset(20% 0 50% 0);
+  }
+  100% {
+    transform: translate(0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* clip-path reveal for hero text lines */
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+}

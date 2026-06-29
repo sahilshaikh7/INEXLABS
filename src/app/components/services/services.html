@@ -1,0 +1,90 @@
+<section #section id="services" class="relative">
+  <div
+    #pin
+    class="relative flex min-h-screen flex-col justify-center overflow-hidden py-20"
+  >
+    <div
+      class="pointer-events-none absolute left-1/2 top-0 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-[var(--cyber-blue)]/10 blur-[120px]"
+    ></div>
+
+    <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div class="flex items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <p
+            class="font-mono text-sm font-medium uppercase tracking-widest text-[var(--cyber-blue-bright)]"
+          >
+            // Our services & courses
+          </p>
+          <h2
+            class="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl"
+          >
+            Full-spectrum protection across your attack surface
+          </h2>
+        </div>
+        <p
+          class="hidden font-mono text-xs uppercase tracking-widest text-muted-foreground lg:block"
+        >
+          Scroll →
+        </p>
+      </div>
+    </div>
+
+    <!-- Horizontal track (translated on scroll on lg+, wraps to grid below) -->
+    <div class="relative mt-12 lg:mt-16">
+      <div
+        #track
+        class="flex flex-col gap-5 px-4 sm:px-6 lg:flex-row lg:flex-nowrap lg:px-[max(1.5rem,calc((100vw-72rem)/2))]"
+      >
+        @for (s of services; track s.title) {
+          <div
+            data-cursor="hover"
+            class="group relative w-full shrink-0 overflow-hidden rounded-2xl glass border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--cyber-blue-bright)]/50 hover:shadow-glow lg:w-[20rem]"
+          >
+            <div
+              class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--cyber-blue)]/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            ></div>
+            <span
+              class="relative flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--cyber-blue)]/15 text-[var(--cyber-blue-bright)] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-glow-sm"
+            >
+              @switch (s.icon) {
+                @case ('appWindow') {
+                  <svg lucideAppWindow class="h-6 w-6"></svg>
+                }
+                @case ('smartphone') {
+                  <svg lucideSmartphone class="h-6 w-6"></svg>
+                }
+                @case ('crosshair') {
+                  <svg lucideCrosshair class="h-6 w-6"></svg>
+                }
+                @case ('bug') {
+                  <svg lucideBug class="h-6 w-6"></svg>
+                }
+                @case ('cloud') {
+                  <svg lucideCloud class="h-6 w-6"></svg>
+                }
+                @case ('network') {
+                  <svg lucideNetwork class="h-6 w-6"></svg>
+                }
+                @case ('radar') {
+                  <svg lucideRadar class="h-6 w-6"></svg>
+                }
+                @case ('siren') {
+                  <svg lucideSiren class="h-6 w-6"></svg>
+                }
+                @case ('fileCheck2') {
+                  <svg lucideFileCheck2 class="h-6 w-6"></svg>
+                }
+              }
+            </span>
+            <h3 class="relative mt-5 text-lg font-semibold">{{ s.title }}</h3>
+            <p
+              class="relative mt-2 text-sm leading-relaxed text-muted-foreground"
+            >
+              {{ s.desc }}
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

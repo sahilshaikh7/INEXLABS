@@ -1,0 +1,54 @@
+<section id="why" class="relative py-24 sm:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div appReveal class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-medium uppercase tracking-widest text-primary">
+        Why Choose Us
+      </p>
+      <h2
+        class="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl"
+      >
+        Security teams choose Aegis for results, not promises
+      </h2>
+    </div>
+
+    <div class="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      @for (f of features; track f.title; let i = $index) {
+        <div
+          [appReveal]="(i % 3) * 100"
+          class="group flex items-start gap-4 rounded-2xl glass border border-border p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-glow-sm"
+        >
+          <span
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary transition-transform duration-300 group-hover:scale-110"
+          >
+            @switch (f.icon) {
+              @case ('award') {
+                <svg lucideAward class="h-6 w-6"></svg>
+              }
+              @case ('clock') {
+                <svg lucideClock class="h-6 w-6"></svg>
+              }
+              @case ('shieldCheck') {
+                <svg lucideShieldCheck class="h-6 w-6"></svg>
+              }
+              @case ('cpu') {
+                <svg lucideCpu class="h-6 w-6"></svg>
+              }
+              @case ('zap') {
+                <svg lucideZap class="h-6 w-6"></svg>
+              }
+              @case ('handshake') {
+                <svg lucideHandshake class="h-6 w-6"></svg>
+              }
+            }
+          </span>
+          <div>
+            <h3 class="text-base font-semibold">{{ f.title }}</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+              {{ f.desc }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

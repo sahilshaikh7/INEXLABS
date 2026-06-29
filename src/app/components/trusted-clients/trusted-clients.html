@@ -1,0 +1,42 @@
+<section class="relative border-y border-border py-16">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <p
+      class="text-center text-sm uppercase tracking-widest text-muted-foreground"
+    >
+      Trusted by forward-thinking organizations worldwide
+    </p>
+
+    <div
+      class="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+    >
+      <div class="flex w-max animate-marquee gap-4">
+        @for (c of marquee; track $index) {
+          <div
+            class="flex h-16 min-w-44 items-center justify-center gap-2.5 rounded-xl glass border border-border px-7"
+          >
+            <span
+              class="flex h-7 w-7 items-center justify-center rounded-md bg-primary/15 text-primary"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                class="h-4 w-4"
+                stroke="currentColor"
+                [attr.stroke-width]="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z" />
+              </svg>
+            </span>
+            <span
+              class="whitespace-nowrap text-lg font-semibold tracking-tight text-foreground/80"
+            >
+              {{ c }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

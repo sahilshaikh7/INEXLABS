@@ -1,0 +1,71 @@
+<section id="roi" class="relative overflow-hidden py-24 sm:py-32">
+  <div
+    class="pointer-events-none absolute left-1/2 top-0 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-[var(--neon-purple)]/12 blur-[130px]"
+  ></div>
+
+  <div
+    class="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2"
+  >
+    <!-- Neon dollar stage -->
+    <div class="relative order-2 flex items-center justify-center lg:order-1">
+      <div
+        #glow
+        class="pointer-events-none absolute h-72 w-72 rounded-full bg-[var(--cyber-blue-bright)]/35 blur-[90px]"
+      ></div>
+      <img
+        #dollar
+        src="/assets/neon-dollar.png"
+        alt="Glowing neon dollar sign representing security ROI"
+        class="relative w-72 max-w-full will-change-transform drop-shadow-2xl sm:w-80"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Copy + stats -->
+    <div class="order-1 lg:order-2">
+      <p
+        class="font-mono text-sm font-medium uppercase tracking-widest text-[var(--cyber-blue-bright)]"
+      >
+        // The return on protection
+      </p>
+      <h2
+        appSplitReveal
+        class="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl"
+      >
+        Security that pays for itself, many times over.
+      </h2>
+      <p class="mt-5 max-w-lg text-pretty leading-relaxed text-muted-foreground">
+        Downtime, breaches, and compliance fines are expensive. Proactive
+        defense from INEXLABS turns security from a cost center into measurable
+        business value.
+      </p>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-3">
+        @for (s of stats; track s.label) {
+          <div
+            class="rounded-2xl glass border border-border p-5 shadow-glow-sm"
+            data-cursor="hover"
+          >
+            <p
+              class="font-mono text-2xl font-semibold text-[var(--cyber-blue-bright)] sm:text-3xl"
+            >
+              {{ s.value }}
+            </p>
+            <p class="mt-2 text-xs leading-relaxed text-muted-foreground">
+              {{ s.label }}
+            </p>
+          </div>
+        }
+      </div>
+
+      <a
+        href="#contact"
+        data-magnetic="0.5"
+        data-cursor="hover"
+        class="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--cyber-blue)] px-6 py-3.5 text-sm font-medium text-white shadow-glow transition-transform hover:scale-[1.03]"
+      >
+        Calculate your ROI
+      </a>
+    </div>
+  </div>
+</section>

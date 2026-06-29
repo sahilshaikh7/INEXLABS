@@ -1,0 +1,75 @@
+<footer class="relative border-t border-border">
+  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <div class="grid gap-10 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <a href="#home" class="flex items-center gap-2">
+          <app-logo class="h-9 w-9" />
+          <span class="text-base font-semibold tracking-tight">
+            <span class="text-foreground">INEX</span
+            ><span class="text-[var(--cyber-blue-bright)]">LABS</span>
+          </span>
+        </a>
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+          AI-driven cybersecurity defense for the modern enterprise.
+          Headquartered in Indore, protecting clients across the globe.
+        </p>
+        <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
+          <li class="flex items-center gap-2.5">
+            <svg lucideMapPin class="h-4 w-4 text-primary"></svg> Crystal IT Park,
+            Indore, India
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg lucideMail class="h-4 w-4 text-primary"></svg> hello@aegiscyber.io
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg lucidePhone class="h-4 w-4 text-primary"></svg> +91 731 555 0192
+          </li>
+        </ul>
+      </div>
+
+      @for (col of columns; track col.title) {
+        <div>
+          <h3 class="text-sm font-semibold">{{ col.title }}</h3>
+          <ul class="mt-4 space-y-3">
+            @for (l of col.links; track l) {
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {{ l }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row"
+    >
+      <p class="text-xs text-muted-foreground">
+        © {{ year }} INEXLABS. All rights reserved.
+      </p>
+      <div class="flex items-center gap-5 text-xs text-muted-foreground">
+        <a href="#" class="transition-colors hover:text-foreground">
+          Privacy Policy
+        </a>
+        <a href="#" class="transition-colors hover:text-foreground">
+          Terms &amp; Conditions
+        </a>
+      </div>
+      <div class="flex gap-2">
+        @for (s of socials; track s) {
+          <a
+            href="#"
+            class="inline-flex items-center rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+          >
+            {{ s }}
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>
