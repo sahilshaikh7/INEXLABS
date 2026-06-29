@@ -39,7 +39,7 @@ export class Testimonials implements OnInit, OnDestroy {
       avatar: '/avatar-1.png',
       rating: 5,
       review:
-        'Aegis Cyber transformed our security posture. Their SOC team caught a sophisticated intrusion attempt within minutes — something our previous vendor missed entirely. Truly an enterprise-grade partner.',
+        'INEXLABS transformed our security posture. Their SOC team caught a sophisticated intrusion attempt within minutes — something our previous vendor missed entirely. Truly an enterprise-grade partner.',
     },
     {
       name: 'Sarah Whitfield',
