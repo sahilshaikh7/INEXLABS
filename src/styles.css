@@ -162,8 +162,8 @@ app-cursor {
   .gradient-text {
     background: linear-gradient(
       100deg,
-      var(--cyber-blue-bright),
-      #ffffff 45%,
+        var(--cyber-blue-bright),
+        #ffffff 45%,
       var(--neon-pink)
     );
     -webkit-background-clip: text;
@@ -202,9 +202,9 @@ app-cursor {
   .mask-fade-x {
     mask-image: linear-gradient(
       to right,
-      transparent,
-      black 8%,
-      black 92%,
+        transparent,
+        black 8%,
+        black 92%,
       transparent
     );
   }
@@ -212,9 +212,9 @@ app-cursor {
     height: 1px;
     background: linear-gradient(
       to right,
-      transparent,
-      var(--cyber-blue-bright),
-      var(--neon-pink),
+        transparent,
+        var(--cyber-blue-bright),
+        var(--neon-pink),
       transparent
     );
     opacity: 0.6;
@@ -437,4 +437,8 @@ app-cursor {
 .clip-reveal {
   clip-path: inset(0 0 100% 0);
   opacity: 0;
+}
+
+.px15 {
+  font-size: 15px;
 }

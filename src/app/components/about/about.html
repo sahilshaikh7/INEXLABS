@@ -13,24 +13,22 @@
       </h2>
       <p class="mt-5 text-pretty leading-relaxed text-muted-foreground">
         We are a team of certified ethical hackers, security engineers, and
-        analysts headquartered in Indore, India — defending global enterprises
+        analysts. in Indore, India Defending global enterprises
         with relentless precision and round-the-clock vigilance.
       </p>
     </div>
 
-    <div class="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
+    <!-- <div class="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
       @for (s of stats; track s.label; let i = $index) {
-        <div
-          [appReveal]="i * 100"
-          class="rounded-2xl glass border border-border p-6 text-center transition-colors hover:border-primary/40"
-        >
-          <p class="text-3xl font-semibold text-primary text-glow sm:text-4xl">
-            <app-counter [to]="s.value" [suffix]="s.suffix" />
-          </p>
-          <p class="mt-2 text-sm text-muted-foreground">{{ s.label }}</p>
-        </div>
+      <div [appReveal]="i * 100"
+        class="rounded-2xl glass border border-border p-6 text-center transition-colors hover:border-primary/40">
+        <p class="text-3xl font-semibold text-primary text-glow sm:text-4xl">
+          <app-counter [to]="s.value" [suffix]="s.suffix" />
+        </p>
+        <p class="mt-2 text-sm text-muted-foreground">{{ s.label }}</p>
+      </div>
       }
-    </div>
+    </div> -->
 
     <div class="mt-16 grid gap-6 lg:grid-cols-2">
       <div class="grid gap-6">
@@ -72,19 +70,19 @@
         <h3 class="text-xl font-semibold">Our Journey</h3>
         <ol class="mt-6 space-y-6 border-l border-border pl-6">
           @for (t of timeline; track t.year) {
-            <li class="relative">
-              <span
+          <li class="relative">
+            <span
                 class="absolute -left-[31px] top-1 flex h-4 w-4 items-center justify-center rounded-full border border-primary/60 bg-background"
               >
                 <span
                   class="h-1.5 w-1.5 rounded-full bg-primary shadow-glow-sm"
                 ></span>
-              </span>
-              <p class="text-sm font-semibold text-primary">{{ t.year }}</p>
-              <p class="mt-1 text-sm leading-relaxed text-muted-foreground">
-                {{ t.text }}
-              </p>
-            </li>
+            </span>
+            <p class="text-sm font-semibold text-primary">{{ t.year }}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+              {{ t.text }}
+            </p>
+          </li>
           }
         </ol>
       </div>
