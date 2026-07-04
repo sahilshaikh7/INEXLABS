@@ -7,6 +7,11 @@ interface FooterColumn {
   links: string[];
 }
 
+interface SocialLink {
+  label: string;
+  href: string;
+}
+
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -15,7 +20,22 @@ interface FooterColumn {
 })
 export class Footer {
   protected readonly year = new Date().getFullYear();
-  protected readonly socials = ['LinkedIn', 'X', 'GitHub', 'YouTube'];
+
+  protected readonly officeAddress =
+    '201 Vibrant Business Tower, Manorama Ganj, near Geeta Bhavan, Square, Indore, Madhya Pradesh 452001';
+
+  protected readonly mapLinkUrl =
+    'https://www.google.com/maps/search/?api=1&query=201+Vibrant+Business+Tower,+Manorama+Ganj,+near+Geeta+Bhavan,+Square,+Indore,+Madhya+Pradesh+452001';
+
+  protected readonly email = 'support@inexlabs.in';
+  protected readonly phone = '+91 ';
+
+  protected readonly socials: SocialLink[] = [
+    { label: 'LinkedIn', href: '#' },
+    { label: 'Instagram', href: '#' },
+    { label: 'Facebook', href: '#' },
+    { label: 'YouTube', href: '#' },
+  ];
 
   protected readonly columns: FooterColumn[] = [
     {

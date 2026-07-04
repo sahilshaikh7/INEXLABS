@@ -2,9 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { cn } from '../lib/utils';
 
 /**
- * INEXLABS circuit "L" mark. Pure SVG so it stays razor-sharp at any size, with
- * a continuous glowing-border animation (drives the `border-glow` keyframes /
- * SVG drop-shadow filter) plus animated circuit traces.
+ * INEXLABS mark — inverted white I + blue L, spaced apart.
  */
 @Component({
   selector: 'app-logo',
@@ -28,7 +26,7 @@ import { cn } from '../lib/utils';
   template: `
     <span [class]="classes()" aria-label="INEXLABS">
       <svg
-        viewBox="0 0 48 48"
+        viewBox="0 0 56 56"
         fill="none"
         class="h-full w-full animate-border-glow"
         xmlns="http://www.w3.org/2000/svg"
@@ -40,28 +38,24 @@ import { cn } from '../lib/utils';
           </linearGradient>
         </defs>
 
-        <!-- Circuit traces feeding the L -->
+        <!-- Circuit accents (near I) -->
         <path
           class="trace"
-          d="M10 14 H16 M13 14 V22 M13 22 H18 M10 30 H15"
+          d="M6 16 H11 M8.5 16 V22 M8.5 22 H12"
           stroke="#00a3ff"
-          stroke-width="1.2"
+          stroke-width="1.1"
           stroke-linecap="round"
           opacity="0.7"
         />
-        <circle cx="18" cy="22" r="1.4" fill="#00a3ff" />
-        <circle cx="15" cy="30" r="1.4" fill="#00a3ff" />
+        <circle cx="12" cy="22" r="1.3" fill="#00a3ff" opacity="0.75" />
 
-        <!-- The "L" -->
-        <path
-          d="M20 8 H27 V34 H40 V41 H20 Z"
-          fill="url(#lgrad)"
-          stroke="#7fd0ff"
-          stroke-width="1"
-          stroke-linejoin="round"
-        />
-        <!-- Top notch detail -->
-        <rect x="20" y="8" width="7" height="5" fill="#0a0c10" opacity="0.5" />
+        <!-- Inverted white I — stem on top, square dot below -->
+        <rect x="10" y="10" width="7" height="22" fill="#ffffff" rx="0.75" />
+        <rect x="10" y="36" width="7" height="7" fill="#ffffff" rx="1" />
+
+        <!-- Blue L — vertical stem + bottom foot (not U / half-square) -->
+        <rect x="28" y="10" width="7" height="33" fill="url(#lgrad)" rx="0.75" />
+        <rect x="28" y="36" width="20" height="7" fill="url(#lgrad)" rx="1" />
       </svg>
     </span>
   `,
@@ -70,9 +64,6 @@ export class Logo {
   readonly className = input<string>('', { alias: 'class' });
 
   protected readonly classes = computed(() =>
-    cn(
-      'relative inline-flex items-center justify-center rounded-lg p-1',
-      this.className(),
-    ),
+    cn('relative inline-flex items-center justify-center', this.className()),
   );
 }

@@ -1,19 +1,20 @@
-<section #section id="services" class="relative">
+<section #section id="services" class="relative isolate bg-background">
+  <!-- Desktop: pinned card stack -->
   <div
     #pin
-    class="relative flex min-h-screen flex-col justify-center overflow-hidden py-20"
+    class="relative hidden h-screen flex-col bg-background py-12 lg:flex"
   >
     <div
       class="pointer-events-none absolute left-1/2 top-0 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-[var(--cyber-blue)]/10 blur-[120px]"
     ></div>
 
-    <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
+    <div class="relative mx-auto w-full max-w-6xl shrink-0 px-4 sm:px-6">
       <div class="flex items-end justify-between gap-6">
         <div class="max-w-2xl">
           <p
             class="font-mono text-sm font-medium uppercase tracking-widest text-[var(--cyber-blue-bright)]"
           >
-            // Our services & courses
+            Our services & courses
           </p>
           <h2
             class="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl"
@@ -21,70 +22,143 @@
             Full-spectrum protection across your attack surface
           </h2>
         </div>
-        <p
-          class="hidden font-mono text-xs uppercase tracking-widest text-muted-foreground lg:block"
-        >
-          Scroll →
+        <p class="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          Scroll ↓
         </p>
       </div>
     </div>
 
-    <!-- Horizontal track (translated on scroll on lg+, wraps to grid below) -->
-    <div class="relative mt-12 lg:mt-16">
+    <div
+      class="relative mx-auto flex min-h-0 w-full max-w-3xl flex-1 items-center px-4 sm:px-6"
+    >
+      <!-- Extra padding so stacked / thrown cards are never clipped -->
       <div
-        #track
-        class="flex flex-col gap-5 px-4 sm:px-6 lg:flex-row lg:flex-nowrap lg:px-[max(1.5rem,calc((100vw-72rem)/2))]"
+        #stack
+        class="relative w-full px-2 py-14"
+        style="perspective: 1400px"
       >
-        @for (s of services; track s.title) {
-          <div
-            data-cursor="hover"
-            class="group relative w-full shrink-0 overflow-hidden rounded-2xl glass border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--cyber-blue-bright)]/50 hover:shadow-glow lg:w-[20rem]"
-          >
-            <div
-              class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--cyber-blue)]/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            ></div>
-            <span
-              class="relative flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--cyber-blue)]/15 text-[var(--cyber-blue-bright)] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-glow-sm"
+        <div class="relative mx-auto h-[min(26rem,46vh)] w-full xl:h-[min(28rem,48vh)]">
+          @for (s of services; track s.title; let i = $index) {
+            <article
+              data-service-card
+              data-cursor="hover"
+              class="service-card group absolute inset-0 flex flex-col overflow-hidden rounded-3xl glass border border-border p-10 shadow-glow-sm will-change-transform xl:p-12"
+              [style.z-index]="i + 1"
             >
-              @switch (s.icon) {
-                @case ('appWindow') {
-                  <svg lucideAppWindow class="h-6 w-6"></svg>
+              <div
+                class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[var(--cyber-blue)]/10 blur-3xl opacity-60"
+              ></div>
+              <span
+                class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[var(--cyber-blue)]/15 text-[var(--cyber-blue-bright)]"
+              >
+                @switch (s.icon) {
+                  @case ('appWindow') {
+                    <svg lucideAppWindow class="h-8 w-8"></svg>
+                  }
+                  @case ('smartphone') {
+                    <svg lucideSmartphone class="h-8 w-8"></svg>
+                  }
+                  @case ('crosshair') {
+                    <svg lucideCrosshair class="h-8 w-8"></svg>
+                  }
+                  @case ('bug') {
+                    <svg lucideBug class="h-8 w-8"></svg>
+                  }
+                  @case ('cloud') {
+                    <svg lucideCloud class="h-8 w-8"></svg>
+                  }
+                  @case ('network') {
+                    <svg lucideNetwork class="h-8 w-8"></svg>
+                  }
+                  @case ('radar') {
+                    <svg lucideRadar class="h-8 w-8"></svg>
+                  }
+                  @case ('siren') {
+                    <svg lucideSiren class="h-8 w-8"></svg>
+                  }
+                  @case ('fileCheck2') {
+                    <svg lucideFileCheck2 class="h-8 w-8"></svg>
+                  }
                 }
-                @case ('smartphone') {
-                  <svg lucideSmartphone class="h-6 w-6"></svg>
-                }
-                @case ('crosshair') {
-                  <svg lucideCrosshair class="h-6 w-6"></svg>
-                }
-                @case ('bug') {
-                  <svg lucideBug class="h-6 w-6"></svg>
-                }
-                @case ('cloud') {
-                  <svg lucideCloud class="h-6 w-6"></svg>
-                }
-                @case ('network') {
-                  <svg lucideNetwork class="h-6 w-6"></svg>
-                }
-                @case ('radar') {
-                  <svg lucideRadar class="h-6 w-6"></svg>
-                }
-                @case ('siren') {
-                  <svg lucideSiren class="h-6 w-6"></svg>
-                }
-                @case ('fileCheck2') {
-                  <svg lucideFileCheck2 class="h-6 w-6"></svg>
-                }
-              }
-            </span>
-            <h3 class="relative mt-5 text-lg font-semibold">{{ s.title }}</h3>
-            <p
-              class="relative mt-2 text-sm leading-relaxed text-muted-foreground"
-            >
-              {{ s.desc }}
-            </p>
-          </div>
-        }
+              </span>
+              <h3 class="relative mt-8 text-2xl font-semibold tracking-tight xl:text-3xl">
+                {{ s.title }}
+              </h3>
+              <p
+                class="relative mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground xl:text-lg"
+              >
+                {{ s.desc }}
+              </p>
+            </article>
+          }
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Mobile: simple vertical list -->
+  <div class="py-14 lg:hidden">
+    <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <p
+        class="font-mono text-sm font-medium uppercase tracking-widest text-[var(--cyber-blue-bright)]"
+      >
+        Our services & courses
+      </p>
+      <h2
+        class="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl"
+      >
+        Full-spectrum protection across your attack surface
+      </h2>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-5 px-4 sm:px-6">
+      @for (s of services; track s.title) {
+        <article
+          data-cursor="hover"
+          class="group relative overflow-hidden rounded-2xl glass border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--cyber-blue-bright)]/50 hover:shadow-glow"
+        >
+          <div
+            class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[var(--cyber-blue)]/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          ></div>
+          <span
+            class="relative flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--cyber-blue)]/15 text-[var(--cyber-blue-bright)]"
+          >
+            @switch (s.icon) {
+              @case ('appWindow') {
+                <svg lucideAppWindow class="h-6 w-6"></svg>
+              }
+              @case ('smartphone') {
+                <svg lucideSmartphone class="h-6 w-6"></svg>
+              }
+              @case ('crosshair') {
+                <svg lucideCrosshair class="h-6 w-6"></svg>
+              }
+              @case ('bug') {
+                <svg lucideBug class="h-6 w-6"></svg>
+              }
+              @case ('cloud') {
+                <svg lucideCloud class="h-6 w-6"></svg>
+              }
+              @case ('network') {
+                <svg lucideNetwork class="h-6 w-6"></svg>
+              }
+              @case ('radar') {
+                <svg lucideRadar class="h-6 w-6"></svg>
+              }
+              @case ('siren') {
+                <svg lucideSiren class="h-6 w-6"></svg>
+              }
+              @case ('fileCheck2') {
+                <svg lucideFileCheck2 class="h-6 w-6"></svg>
+              }
+            }
+          </span>
+          <h3 class="relative mt-5 text-lg font-semibold">{{ s.title }}</h3>
+          <p class="relative mt-2 text-sm leading-relaxed text-muted-foreground">
+            {{ s.desc }}
+          </p>
+        </article>
+      }
     </div>
   </div>
 </section>

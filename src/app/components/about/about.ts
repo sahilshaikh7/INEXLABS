@@ -1,49 +1,36 @@
 import { Component } from '@angular/core';
-import { LucideEye, LucideTarget } from '@lucide/angular';
-import { Counter } from '../../shared/counter';
+import { LucideEye, LucideShield, LucideTarget, LucideZap } from '@lucide/angular';
 import { RevealDirective } from '../../shared/reveal.directive';
+import { GlobeAnimation } from './globe-animation';
 
-interface Stat {
-  value: number;
-  suffix: string;
-  label: string;
-}
-
-interface TimelineItem {
-  year: string;
-  text: string;
+interface Pillar {
+  icon: 'shield' | 'zap' | 'target';
+  title: string;
+  desc: string;
 }
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [Counter, RevealDirective, LucideEye, LucideTarget],
+  imports: [RevealDirective, GlobeAnimation, LucideEye, LucideShield, LucideTarget, LucideZap],
   templateUrl: './about.html',
 })
 export class About {
-  protected readonly stats: Stat[] = [
-    { value: 12, suffix: '+', label: 'Years securing enterprises' },
-    { value: 850, suffix: '+', label: 'Clients protected globally' },
-    { value: 4, suffix: 'M+', label: 'Threats neutralized daily' },
-    { value: 99, suffix: '.99%', label: 'Monitored uptime SLA' },
-  ];
-
-  protected readonly timeline: TimelineItem[] = [
+  protected readonly pillars: Pillar[] = [
     {
-      year: '2013',
-      text: 'Founded in Indore with a mission to make enterprise-grade security accessible.',
+      icon: 'shield',
+      title: 'Defense in depth',
+      desc: 'Layered controls across endpoints, cloud, and identity — no single point of failure.',
     },
     {
-      year: '2017',
-      text: 'Launched our 24×7 Security Operations Center and global threat intel network.',
+      icon: 'zap',
+      title: 'Real-time response',
+      desc: '24×7 SOC analysts who detect, contain, and neutralize threats before they spread.',
     },
     {
-      year: '2021',
-      text: 'Introduced AI-driven detection, reducing client incident response time by 60%.',
-    },
-    {
-      year: '2025',
-      text: 'Trusted by 850+ organizations across 30+ countries worldwide.',
+      icon: 'target',
+      title: 'Precision testing',
+      desc: 'Certified ethical hackers who think like adversaries and harden what matters most.',
     },
   ];
 }

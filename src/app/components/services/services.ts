@@ -21,6 +21,7 @@ import {
 } from '@lucide/angular';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SmoothScrollService } from '../../core/smooth-scroll.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,11 +31,15 @@ interface Service {
   desc: string;
 }
 
+interface StackPose {
+  y: number;
+  x: number;
+  rotation: number;
+  scale: number;
+}
+
 /**
- * Services as a horizontally-scrolling, pinned gallery. The section pins while
- * the card track translates on X, mapped to vertical scroll via GSAP
- * ScrollTrigger (synced with Lenis). Falls back to a normal grid on small /
- * touch screens where horizontal pinning feels awkward.
+ * Pinned card-deck animation — each card is "thrown" onto the stack on scroll.
  */
 @Component({
   selector: 'app-services',
@@ -105,36 +110,141 @@ export class Services implements AfterViewInit, OnDestroy {
   private readonly section =
     viewChild.required<ElementRef<HTMLElement>>('section');
   private readonly pin = viewChild.required<ElementRef<HTMLElement>>('pin');
-  private readonly track = viewChild.required<ElementRef<HTMLElement>>('track');
+  private readonly stack = viewChild.required<ElementRef<HTMLElement>>('stack');
   private readonly zone = inject(NgZone);
+  private readonly smoothScroll = inject(SmoothScrollService);
   private ctx?: gsap.Context;
 
   ngAfterViewInit(): void {
     if (typeof window === 'undefined') return;
-    // Only enable horizontal pin scroll on larger pointer-capable screens.
     if (!window.matchMedia('(min-width: 1024px)').matches) return;
 
     this.zone.runOutsideAngular(() => {
-      this.ctx = gsap.context(() => {
-        const trackEl = this.track().nativeElement;
-        const getDistance = () =>
-          Math.max(0, trackEl.scrollWidth - window.innerWidth + 64);
-
-        gsap.to(trackEl, {
-          x: () => -getDistance(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: this.section().nativeElement,
-            start: 'top top',
-            end: () => '+=' + getDistance(),
-            scrub: 1,
-            pin: this.pin().nativeElement,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-      }, this.section().nativeElement);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => this.initStack());
+      });
     });
+  }
+
+  /** More scroll per card = harder to rush through on fast wheel. */
+  private scrollPerCard(): number {
+    return Math.round(window.innerHeight * 0.58);
+  }
+
+  /** Cards behind the active one — peek out from the top like a deck. */
+  private behindPose(depth: number, index: number): StackPose {
+    const d = Math.min(depth, 5);
+    const side = index % 2 === 0 ? -1 : 1;
+    return {
+      y: -d * 11,
+      x: side * d * 4,
+      rotation: side * d * 1.2,
+      scale: Math.max(0.9, 1 - d * 0.03),
+    };
+  }
+
+  private initStack(): void {
+    const sectionEl = this.section().nativeElement;
+    const pinEl = this.pin().nativeElement;
+    const stackEl = this.stack().nativeElement;
+    const cards = gsap.utils.toArray<HTMLElement>(
+      '[data-service-card]',
+      stackEl,
+    );
+    if (cards.length < 2) return;
+
+    this.ctx = gsap.context(() => {
+      const totalScroll = (cards.length - 1) * this.scrollPerCard();
+      const throwSide = (i: number) => (i % 2 === 0 ? 1 : -1);
+
+      cards.forEach((card, i) => {
+        gsap.set(card, {
+          transformOrigin: '50% 100%',
+          transformPerspective: 1400,
+          force3D: true,
+        });
+
+        if (i === 0) {
+          gsap.set(card, { y: 0, x: 0, rotation: 0, scale: 1, opacity: 1 });
+        } else {
+          const side = throwSide(i);
+          gsap.set(card, {
+            yPercent: 130,
+            x: side * 90,
+            rotation: side * 28,
+            scale: 0.86,
+            opacity: 0.85,
+          });
+        }
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionEl,
+          start: 'top top',
+          end: () => `+=${totalScroll}`,
+          scrub: 2.4,
+          pin: pinEl,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+
+        const at = i - 1;
+        const side = throwSide(i);
+
+        for (let j = 0; j < i; j++) {
+          const depth = i - j;
+          const pose = this.behindPose(depth, j);
+          tl.to(
+            cards[j],
+            {
+              ...pose,
+              transformOrigin: '50% 0%',
+              duration: 0.55,
+              ease: 'power2.out',
+            },
+            at,
+          );
+        }
+
+        // Throw arc — card flies in then lands on the stack
+        tl.to(
+          card,
+          {
+            yPercent: 18,
+            x: side * 22,
+            rotation: side * 9,
+            scale: 0.97,
+            opacity: 1,
+            duration: 0.38,
+            ease: 'power2.in',
+          },
+          at,
+        );
+
+        tl.to(
+          card,
+          {
+            yPercent: 0,
+            x: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            transformOrigin: '50% 100%',
+            duration: 0.62,
+            ease: 'power4.out',
+          },
+          at + 0.38,
+        );
+      });
+
+      this.smoothScroll.refresh();
+    }, sectionEl);
   }
 
   ngOnDestroy(): void {

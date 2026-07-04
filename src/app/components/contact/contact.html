@@ -1,4 +1,4 @@
-<section id="contact" class="relative py-24 sm:py-32">
+<section id="contact" class="relative py-16 sm:py-20">
   <div
     class="pointer-events-none absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
   ></div>
@@ -18,11 +18,11 @@
       </p>
     </div>
 
-    <div class="mt-16 grid gap-6 lg:grid-cols-5">
+    <div class="mt-10 grid gap-6 lg:grid-cols-5">
       <div appReveal class="lg:col-span-2">
         <div class="flex h-full flex-col rounded-3xl glass border border-border p-8">
           <div class="flex items-center gap-2">
-            <app-logo class="h-9 w-9" />
+            <app-logo class="h-11 w-11" />
             <span class="text-lg font-semibold tracking-tight">
               INEX<span class="text-[var(--cyber-blue-bright)]">LABS</span>
             </span>
@@ -35,17 +35,22 @@
           <ul class="mt-8 space-y-5 text-sm">
             <li class="flex items-start gap-3">
               <svg lucideMapPin class="mt-0.5 h-5 w-5 shrink-0 text-primary"></svg>
-              <span class="text-muted-foreground">
-                5th Floor, Crystal IT Park, Indore, Madhya Pradesh 452010, India
-              </span>
+              <a
+                [href]="mapLinkUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {{ officeAddress }}
+              </a>
             </li>
             <li class="flex items-center gap-3">
               <svg lucideMail class="h-5 w-5 shrink-0 text-primary"></svg>
-              <span class="text-muted-foreground">hello@inexlabs.io</span>
+              <span class="text-muted-foreground">support@inexlabs.in</span>
             </li>
             <li class="flex items-center gap-3">
               <svg lucidePhone class="h-5 w-5 shrink-0 text-primary"></svg>
-              <span class="text-muted-foreground">+91 731 555 0192</span>
+              <span class="text-muted-foreground">+91 9183201667</span>
             </li>
             <li class="flex items-center gap-3">
               <svg lucideClock class="h-5 w-5 shrink-0 text-primary"></svg>
@@ -55,14 +60,25 @@
             </li>
           </ul>
 
-          <div class="mt-8 overflow-hidden rounded-2xl border border-border">
+          <div class="mt-8 overflow-hidden rounded-2xl border border-border shadow-glow-sm">
             <iframe
               title="INEXLABS office location in Indore"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=75.85%2C22.71%2C75.92%2C22.76&layer=mapnik"
-              class="h-40 w-full grayscale invert-[.92] hue-rotate-180"
+              [src]="mapEmbedUrl"
+              class="h-48 w-full grayscale invert-[.92] hue-rotate-180 contrast-[1.08]"
               loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
             ></iframe>
           </div>
+          <a
+            [href]="mapLinkUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-3 inline-flex items-center gap-1.5 text-xs text-primary transition-colors hover:text-[var(--cyber-blue-bright)]"
+          >
+            <svg lucideExternalLink class="h-3.5 w-3.5"></svg>
+            Open in Google Maps
+          </a>
 
           <div class="mt-6 flex gap-2">
             @for (s of socials; track s) {

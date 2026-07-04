@@ -51,8 +51,6 @@ export class Hero implements AfterViewInit, OnDestroy {
   private texture?: THREE.Texture;
   private raf = 0;
 
-  private readonly pointer = { x: 0, y: 0 };
-  private readonly target = { x: 0, y: 0 };
   private clock?: THREE.Clock;
   private cleanups: Array<() => void> = [];
   private glitchTimer = 0;
@@ -67,8 +65,7 @@ export class Hero implements AfterViewInit, OnDestroy {
   }
 
   // ---------------------------------------------------------------------------
-  // Three.js: hacker PNG mapped onto a PlaneGeometry (transparent material),
-  // with a floating animation + subtle 3D parallax tilt that follows the mouse.
+  // Three.js: hacker PNG with floating animation (no hover tilt).
   // ---------------------------------------------------------------------------
   private initThree(): void {
     const stage = this.stageRef().nativeElement;
@@ -121,17 +118,6 @@ export class Hero implements AfterViewInit, OnDestroy {
     this.texture = texture;
     this.clock = new THREE.Clock();
 
-    // Mouse parallax (normalized -0.5..0.5 relative to stage).
-    const onPointer = (e: PointerEvent) => {
-      const r = stage.getBoundingClientRect();
-      this.pointer.x = (e.clientX - r.left) / r.width - 0.5;
-      this.pointer.y = (e.clientY - r.top) / r.height - 0.5;
-    };
-    window.addEventListener('pointermove', onPointer, { passive: true });
-    this.cleanups.push(() =>
-      window.removeEventListener('pointermove', onPointer),
-    );
-
     const onResize = () => {
       const w = stage.clientWidth;
       const h = stage.clientHeight;
@@ -144,13 +130,9 @@ export class Hero implements AfterViewInit, OnDestroy {
 
     const render = () => {
       const t = this.clock!.getElapsedTime();
-      // Smoothly ease the tilt toward the pointer.
-      this.target.x += (this.pointer.x - this.target.x) * 0.06;
-      this.target.y += (this.pointer.y - this.target.y) * 0.06;
 
-      plane.rotation.y = this.target.x * 0.5;
-      plane.rotation.x = this.target.y * 0.4;
-      // Floating bob.
+      plane.rotation.x = 0;
+      plane.rotation.y = 0;
       plane.position.y = Math.sin(t * 0.9) * 0.12;
 
       renderer.render(scene, camera);

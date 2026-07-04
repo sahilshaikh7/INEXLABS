@@ -3,7 +3,7 @@
     <div class="grid gap-10 lg:grid-cols-4">
       <div class="lg:col-span-2">
         <a href="#home" class="flex items-center gap-2">
-          <app-logo class="h-9 w-9" />
+          <app-logo class="h-11 w-11" />
           <span class="text-base font-semibold tracking-tight">
             <span class="text-foreground">INEX</span
             ><span class="text-[var(--cyber-blue-bright)]">LABS</span>
@@ -14,15 +14,34 @@
           Headquartered in Indore, protecting clients across the globe.
         </p>
         <ul class="mt-6 space-y-3 text-sm text-muted-foreground">
-          <li class="flex items-center gap-2.5">
-            <svg lucideMapPin class="h-4 w-4 text-primary"></svg> Crystal IT Park,
-            Indore, India
+          <li class="flex items-start gap-2.5">
+            <svg lucideMapPin class="mt-0.5 h-4 w-4 shrink-0 text-primary"></svg>
+            <a
+              [href]="mapLinkUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-foreground"
+            >
+              {{ officeAddress }}
+            </a>
           </li>
           <li class="flex items-center gap-2.5">
-            <svg lucideMail class="h-4 w-4 text-primary"></svg> hello@aegiscyber.io
+            <svg lucideMail class="h-4 w-4 shrink-0 text-primary"></svg>
+            <a
+              [href]="'mailto:' + email"
+              class="transition-colors hover:text-foreground"
+            >
+              {{ email }}
+            </a>
           </li>
           <li class="flex items-center gap-2.5">
-            <svg lucidePhone class="h-4 w-4 text-primary"></svg> +91 731 555 0192
+            <svg lucidePhone class="h-4 w-4 shrink-0 text-primary"></svg>
+            <a
+              [href]="'tel:' + phone.replaceAll(' ', '')"
+              class="transition-colors hover:text-foreground"
+            >
+              {{ phone }}
+            </a>
           </li>
         </ul>
       </div>
@@ -61,12 +80,12 @@
         </a>
       </div>
       <div class="flex gap-2">
-        @for (s of socials; track s) {
+        @for (s of socials; track s.label) {
           <a
-            href="#"
+            [href]="s.href"
             class="inline-flex items-center rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
           >
-            {{ s }}
+            {{ s.label }}
           </a>
         }
       </div>
