@@ -28,10 +28,11 @@ export class Navbar {
   }
 
   protected readonly links: NavLink[] = [
+    { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
-    { label: 'Courses', href: '#services' },
-    { label: 'Security', href: '#showcase' },
-    { label: 'Pricing', href: '#roi' },
+    { label: 'Services / Courses', href: '#services' },
+    // { label: 'Security', href: '#showcase' },
+    // { label: 'Pricing', href: '#roi' },
     { label: 'FAQ', href: '#faq' },
   ];
 

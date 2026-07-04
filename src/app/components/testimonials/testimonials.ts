@@ -34,28 +34,28 @@ export class Testimonials implements OnInit, OnDestroy {
 
   protected readonly testimonials: Testimonial[] = [
     {
-      name: 'Rajiv Menon',
-      company: 'CTO, FinEdge Capital',
+      name: 'Atul Patidar',
+      company: 'Founder & CEO',
       avatar: '/avatar-1.png',
       rating: 5,
       review:
-        'INEXLABS transformed our security posture. Their SOC team caught a sophisticated intrusion attempt within minutes — something our previous vendor missed entirely. Truly an enterprise-grade partner.',
+        'As the Founder & CEO of Inexlabs, I am committed to building innovative cybersecurity solutions that help businesses stay secure in an ever-evolving digital landscape. Our mission is to deliver reliable, scalable, and proactive security services that organizations can trust.',
     },
     {
-      name: 'Sarah Whitfield',
-      company: 'CISO, Northwind Health',
-      avatar: '/avatar-2.png',
+      name: 'Aman Bairagi ',
+      company: 'Lead Security Consultant',
+      avatar: '/aman.jpeg',
       rating: 5,
       review:
-        'The penetration testing report was the most thorough we have ever received. Clear, prioritized, and actionable. We achieved SOC 2 compliance months ahead of schedule thanks to their guidance.',
+        'Specializes in VAPT, WAPT, and security consulting, delivering practical security assessments and actionable remediation recommendations.',
     },
     {
-      name: 'Daniel Cho',
-      company: 'VP Engineering, Lumen Cloud',
+      name: 'Abhishek Vishwakarma',
+      company: 'Project Manager',
       avatar: '/avatar-3.png',
       rating: 5,
       review:
-        'Their cloud security team hardened our entire AWS estate with zero disruption. Response times are unreal — incidents are contained before we even notice. Worth every rupee and then some.',
+        'Led multiple cybersecurity projects, delivering secure and scalable solutions through effective project management, risk assessment, and cross-functional team coordination.',
     },
   ];
 
