@@ -2,12 +2,8 @@
   <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
     <div class="grid gap-10 lg:grid-cols-4">
       <div class="lg:col-span-2">
-        <a href="#home" class="flex items-center gap-2">
-          <app-logo class="h-11 w-11" />
-          <span class="text-base font-semibold tracking-tight">
-            <span class="text-foreground">INEX</span
-            ><span class="text-[var(--cyber-blue-bright)]">LABS</span>
-          </span>
+        <a href="#home" (click)="navigate($event, '#home')" class="inline-flex">
+          <app-brand logoClass="h-10 w-10" textClass="text-base font-semibold tracking-tight text-foreground" />
         </a>
         <p class="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
           AI-driven cybersecurity defense for the modern enterprise.
@@ -50,13 +46,14 @@
         <div>
           <h3 class="text-sm font-semibold">{{ col.title }}</h3>
           <ul class="mt-4 space-y-3">
-            @for (l of col.links; track l) {
+            @for (l of col.links; track l.href + l.label) {
               <li>
                 <a
-                  href="#"
+                  [href]="l.href"
+                  (click)="navigate($event, l.href)"
                   class="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {{ l }}
+                  {{ l.label }}
                 </a>
               </li>
             }

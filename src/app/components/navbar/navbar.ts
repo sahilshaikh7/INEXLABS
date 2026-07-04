@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { LucideMenu, LucideShield, LucideX } from '@lucide/angular';
-import { Logo } from '../../shared/logo';
+import { Brand } from '../../shared/brand';
 import { cn } from '../../lib/utils';
 import { SmoothScrollService } from '../../core/smooth-scroll.service';
 
@@ -12,7 +12,7 @@ interface NavLink {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [Logo, LucideMenu, LucideShield, LucideX],
+  imports: [Brand, LucideMenu, LucideShield, LucideX],
   templateUrl: './navbar.html',
 })
 export class Navbar {

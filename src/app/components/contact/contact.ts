@@ -8,7 +8,7 @@ import {
   LucidePhone,
   LucideSend,
 } from '@lucide/angular';
-import { Logo } from '../../shared/logo';
+import { Brand } from '../../shared/brand';
 import { RevealDirective } from '../../shared/reveal.directive';
 import { LottiePlayer } from '../../shared/lottie-player';
 import { ContactField } from './contact-field';
@@ -17,7 +17,7 @@ import { ContactField } from './contact-field';
   selector: 'app-contact',
   standalone: true,
   imports: [
-    Logo,
+    Brand,
     RevealDirective,
     LottiePlayer,
     ContactField,
@@ -37,7 +37,7 @@ export class Contact {
   protected readonly socials = ['LinkedIn', 'Instagram', 'Facebook', 'YouTube'];
 
   protected readonly officeAddress =
-    '201 Vibrant Business Tower, Manorama Ganj, near Geeta Bhavan, Square, Indore, Madhya Pradesh 452001';
+    '201, Vibrant Business Tower, Manorama Ganj, near Geeta Bhavan, Square, Indore, Madhya Pradesh 452001';
 
   protected readonly mapEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     'https://maps.google.com/maps?q=201+Vibrant+Business+Tower,+Manorama+Ganj,+near+Geeta+Bhavan,+Square,+Indore,+Madhya+Pradesh+452001&hl=en&z=17&output=embed',

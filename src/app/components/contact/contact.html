@@ -1,8 +1,8 @@
-<section id="contact" class="relative py-16 sm:py-20">
+<section id="contact" class="relative overflow-x-hidden py-16 sm:py-20">
   <div
-    class="pointer-events-none absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
+    class="pointer-events-none absolute left-1/2 top-0 h-72 w-full max-w-[40rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
   ></div>
-  <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+  <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
     <div appReveal class="mx-auto max-w-2xl text-center">
       <p class="text-sm font-medium uppercase tracking-widest text-primary">
         Contact Us
@@ -18,14 +18,16 @@
       </p>
     </div>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-5">
-      <div appReveal class="lg:col-span-2">
-        <div class="flex h-full flex-col rounded-3xl glass border border-border p-8">
-          <div class="flex items-center gap-2">
-            <app-logo class="h-11 w-11" />
-            <span class="text-lg font-semibold tracking-tight">
-              INEX<span class="text-[var(--cyber-blue-bright)]">LABS</span>
-            </span>
+    <div class="mt-10 grid w-full min-w-0 gap-6 lg:grid-cols-5">
+      <div appReveal class="min-w-0 lg:col-span-2">
+        <div
+          class="flex h-full w-full min-w-0 flex-col rounded-3xl glass border border-border p-5 sm:p-8"
+        >
+          <div class="min-w-0">
+            <app-brand
+              logoClass="h-10 w-10 shrink-0"
+              textClass="text-lg font-semibold tracking-tight text-foreground"
+            />
           </div>
           <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
             Enterprise cybersecurity, engineered in Indore and trusted across
@@ -33,38 +35,48 @@
           </p>
 
           <ul class="mt-8 space-y-5 text-sm">
-            <li class="flex items-start gap-3">
+            <li class="flex min-w-0 items-start gap-3">
               <svg lucideMapPin class="mt-0.5 h-5 w-5 shrink-0 text-primary"></svg>
               <a
                 [href]="mapLinkUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-muted-foreground transition-colors hover:text-foreground"
+                class="min-w-0 break-words text-muted-foreground transition-colors hover:text-foreground"
               >
                 {{ officeAddress }}
               </a>
             </li>
-            <li class="flex items-center gap-3">
+            <li class="flex min-w-0 items-center gap-3">
               <svg lucideMail class="h-5 w-5 shrink-0 text-primary"></svg>
-              <span class="text-muted-foreground">support@inexlabs.in</span>
+              <a
+                href="mailto:support@inexlabs.in"
+                class="min-w-0 break-all text-muted-foreground transition-colors hover:text-foreground"
+              >
+                support@inexlabs.in
+              </a>
             </li>
-            <li class="flex items-center gap-3">
+            <li class="flex min-w-0 items-center gap-3">
               <svg lucidePhone class="h-5 w-5 shrink-0 text-primary"></svg>
-              <span class="text-muted-foreground">+91 9183201667</span>
+              <a
+                href="tel:+919183201667"
+                class="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                +91 9183201667
+              </a>
             </li>
-            <li class="flex items-center gap-3">
-              <svg lucideClock class="h-5 w-5 shrink-0 text-primary"></svg>
+            <li class="flex min-w-0 items-start gap-3">
+              <svg lucideClock class="mt-0.5 h-5 w-5 shrink-0 text-primary"></svg>
               <span class="text-muted-foreground">
                 Mon–Fri, 9:00–18:00 IST · SOC 24×7
               </span>
             </li>
           </ul>
 
-          <div class="mt-8 overflow-hidden rounded-2xl border border-border shadow-glow-sm">
+          <div class="mt-8 w-full min-w-0 overflow-hidden rounded-2xl border border-border shadow-glow-sm">
             <iframe
               title="INEXLABS office location in Indore"
               [src]="mapEmbedUrl"
-              class="h-48 w-full grayscale invert-[.92] hue-rotate-180 contrast-[1.08]"
+              class="h-48 w-full max-w-full grayscale invert-[.92] hue-rotate-180 contrast-[1.08]"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen
@@ -80,7 +92,7 @@
             Open in Google Maps
           </a>
 
-          <div class="mt-6 flex gap-2">
+          <div class="mt-6 flex flex-wrap gap-2">
             @for (s of socials; track s) {
               <a
                 href="#"
@@ -93,10 +105,10 @@
         </div>
       </div>
 
-      <div [appReveal]="120" class="lg:col-span-3">
+      <div [appReveal]="120" class="min-w-0 w-full lg:col-span-3">
         @if (sent()) {
           <div
-            class="flex h-full flex-col items-center justify-center gap-4 rounded-3xl glass border border-border p-8 text-center shadow-glow"
+            class="flex h-full min-w-0 w-full flex-col items-center justify-center gap-4 rounded-3xl glass border border-border p-5 text-center shadow-glow sm:p-8"
           >
             <app-lottie
               path="/lottie/success-check.json"
@@ -110,44 +122,51 @@
             </p>
           </div>
         } @else {
-        <form
-          (submit)="onSubmit($event)"
-          class="flex h-full flex-col gap-4 rounded-3xl glass border border-border p-8 shadow-glow-sm"
-        >
-          <div class="grid gap-4 sm:grid-cols-2">
-            <app-contact-field id="name" label="Full Name" icon="user" [required]="true" />
+          <form
+            (submit)="onSubmit($event)"
+            class="flex h-full w-full min-w-0 flex-col gap-4 rounded-3xl glass border border-border p-5 shadow-glow-sm sm:p-8"
+          >
+            <div class="grid w-full min-w-0 gap-4 sm:grid-cols-2">
+              <app-contact-field id="name" label="Full Name" icon="user" [required]="true" />
+              <app-contact-field
+                id="email"
+                label="Email"
+                type="email"
+                icon="mail"
+                [required]="true"
+              />
+              <div class="sm:col-span-2">
+                <app-contact-field
+                  id="phone"
+                  label="Phone Number"
+                  type="tel"
+                  icon="phone"
+                />
+              </div>
+            </div>
             <app-contact-field
-              id="email"
-              label="Email"
-              type="email"
-              icon="mail"
+              id="message"
+              label="How can we help?"
+              icon="messageSquare"
+              [textarea]="true"
               [required]="true"
             />
-            <app-contact-field id="phone" label="Phone Number" type="tel" icon="phone" />
-          </div>
-          <app-contact-field
-            id="message"
-            label="How can we help?"
-            icon="messageSquare"
-            [textarea]="true"
-            [required]="true"
-          />
-          <button
-            type="submit"
-            class="group mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.02]"
-          >
-            {{ sent() ? 'Message Sent ✓' : 'Send Message' }}
-            @if (!sent()) {
-              <svg
-                lucideSend
-                class="h-4 w-4 transition-transform group-hover:translate-x-1"
-              ></svg>
-            }
-          </button>
-          <p class="text-center text-xs text-muted-foreground">
-            We respect your privacy. Your details are never shared.
-          </p>
-        </form>
+            <button
+              type="submit"
+              class="group mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.02] sm:w-auto"
+            >
+              {{ sent() ? 'Message Sent ✓' : 'Send Message' }}
+              @if (!sent()) {
+                <svg
+                  lucideSend
+                  class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                ></svg>
+              }
+            </button>
+            <p class="text-center text-xs text-muted-foreground">
+              We respect your privacy. Your details are never shared.
+            </p>
+          </form>
         }
       </div>
     </div>

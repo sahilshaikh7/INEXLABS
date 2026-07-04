@@ -22,11 +22,10 @@
       class="flex items-center gap-2.5"
       data-cursor="hover"
     >
-      <app-logo class="h-11 w-11" />
-      <span class="text-base font-semibold tracking-tight">
-        <span class="text-foreground">INEX</span
-        ><span class="text-[var(--cyber-blue-bright)]">LABS</span>
-      </span>
+      <app-brand
+        logoClass="h-14 w-14"
+        textClass="text-[28px] font-semibold tracking-tight text-white/100"
+      />
     </a>
 
     <div class="hidden items-center gap-8 md:flex">
@@ -35,7 +34,7 @@
           [href]="l.href"
           (click)="navigate($event, l.href)"
           data-cursor="hover"
-          class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          class="text-[20px] text-white/75 transition-colors hover:text-white/90"
         >
           {{ l.label }}
         </a>
@@ -48,7 +47,7 @@
         (click)="navigate($event, '#contact')"
         data-magnetic="0.45"
         data-cursor="hover"
-        class="group inline-flex items-center gap-2 rounded-full bg-[var(--cyber-blue)] px-5 py-2.5 text-sm font-medium text-white shadow-glow transition-transform hover:scale-105"
+        class="group inline-flex items-center gap-2 rounded-full bg-[var(--cyber-blue)] px-6 py-3 text-lg font-medium text-white shadow-glow transition-transform hover:scale-105"
       >
         <svg lucideShield class="h-4 w-4"></svg>
         Contact Us
@@ -75,7 +74,7 @@
           <a
             [href]="l.href"
             (click)="navigate($event, l.href)"
-            class="rounded-lg px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            class="rounded-lg px-4 py-3 text-[18px] text-white/75 transition-colors hover:bg-white/10 hover:text-white/90"
           >
             {{ l.label }}
           </a>
@@ -83,7 +82,7 @@
         <a
           href="#contact"
           (click)="navigate($event, '#contact')"
-          class="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--cyber-blue)] px-4 py-3 text-sm font-medium text-white"
+          class="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--cyber-blue)] px-4 py-4 text-lg font-medium text-white"
         >
           <svg lucideShield class="h-4 w-4"></svg>
           Contact Us
