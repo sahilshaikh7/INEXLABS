@@ -28,7 +28,7 @@ export class Footer {
     'https://www.google.com/maps/search/?api=1&query=201+Vibrant+Business+Tower,+Manorama+Ganj,+near+Geeta+Bhavan,+Square,+Indore,+Madhya+Pradesh+452001';
 
   protected readonly email = 'support@inexlabs.in';
-  protected readonly phone = '+91 ';
+  protected readonly phone = '+91 9183201667';
 
   protected readonly socials: SocialLink[] = [
     { label: 'LinkedIn', href: '#' },

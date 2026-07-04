@@ -30,7 +30,9 @@ export class Navbar {
   protected readonly links: NavLink[] = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
-    { label: 'Services / Courses', href: '#services' },
+    { label: 'Services', href: '#services' },
+    { label: 'Courses', href: '#services' },
+    { label: 'Our Team', href: '#testimonials' },
     // { label: 'Security', href: '#showcase' },
     // { label: 'Pricing', href: '#roi' },
     { label: 'FAQ', href: '#faq' },

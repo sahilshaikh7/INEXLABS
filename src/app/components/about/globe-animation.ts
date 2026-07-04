@@ -21,10 +21,10 @@ interface NetworkLink {
   selector: 'app-globe-animation',
   standalone: true,
   host: {
-    class: 'block w-full',
+    class: 'block h-full w-full',
   },
   template: `
-    <div class="globe-wrap relative w-full">
+    <div class="globe-wrap relative h-full w-full">
       <div
         #stage
         class="globe-stage absolute inset-0 touch-none select-none"
@@ -35,8 +35,8 @@ interface NetworkLink {
   styles: [
     `
       .globe-wrap {
-        aspect-ratio: 1;
         width: 100%;
+        height: 100%;
       }
 
       .globe-stage {
@@ -88,7 +88,7 @@ export class GlobeAnimation implements AfterViewInit, OnDestroy {
 
       const measure = (): { w: number; h: number } => {
         const rect = wrap.getBoundingClientRect();
-        const size = Math.round(Math.min(rect.width, rect.height));
+        const size = Math.round(Math.min(rect.width, rect.height) || rect.width);
         return { w: Math.max(size, 1), h: Math.max(size, 1) };
       };
 

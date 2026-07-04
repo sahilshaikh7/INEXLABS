@@ -1,0 +1,29 @@
+<svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a424d"/>
+      <stop offset="55%" stop-color="#252b33"/>
+      <stop offset="100%" stop-color="#14181e"/>
+    </linearGradient>
+    <linearGradient id="dark-l" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#343c48"/>
+      <stop offset="100%" stop-color="#1a1f27"/>
+    </linearGradient>
+    <clipPath id="istem">
+      <rect x="8" y="28" width="16" height="57" rx="1.2"/>
+    </clipPath>
+  </defs>
+  <rect x="8" y="8" width="16" height="16" rx="1.2" fill="url(#dark)" stroke="#2ee8ff" stroke-width="1.6"/>
+  <rect x="8" y="28" width="16" height="57" rx="1.2" fill="url(#dark)" stroke="#2ee8ff" stroke-width="1.6"/>
+  <g clip-path="url(#istem)" stroke="#2ee8ff" stroke-width="1.05" stroke-linecap="round" opacity="0.92">
+    <path d="M16 34 V 80"/>
+    <path d="M16 41 L 20 45 M16 41 L 12 45"/>
+    <path d="M16 52 L 20 56 M16 52 L 12 56"/>
+    <path d="M16 63 L 20 67 M16 63 L 12 67"/>
+    <circle cx="16" cy="41" r="1.5" fill="#2ee8ff"/>
+    <circle cx="16" cy="52" r="1.5" fill="#2ee8ff"/>
+    <circle cx="16" cy="63" r="1.5" fill="#2ee8ff"/>
+    <circle cx="16" cy="80" r="1.5" fill="#2ee8ff"/>
+  </g>
+  <path d="M 32 15 L 40 8 L 48 15 L 48 69 L 72 69 L 80 77 L 72 85 L 32 85 Z" fill="url(#dark-l)" stroke="#2ee8ff" stroke-width="1.6" stroke-linejoin="miter"/>
+</svg>
